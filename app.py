@@ -6,19 +6,20 @@ import os
 
 # Load environment variables from .env file
 load_dotenv()
+ENVIRONMENT = os.getenv("environment")
 
 app = Flask(__name__)
 
-if os.getenv("environment") == "production":
+if ENVIRONMENT == "production":
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     db = SQLAlchemy(app)
     migrate = Migrate(app, db)
-elif os.getenv("environment") == "development":
+elif ENVIRONMENT == "development":
     print("--dev mode found, no database connected--")
     pass
 else:
     print("environment variables did not load correctly")
-    print("environment read: ", os.getenv("environment"))
+    print("environment read: ", ENVIRONMENT)
 
 
 @app.route('/')
@@ -29,4 +30,9 @@ def hello():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    if ENVIRONMENT == "development":
+        app.run(debug=True)
+    elif ENVIRONMENT == "production":
+        app.run()
+    else: 
+        print("error running app")
