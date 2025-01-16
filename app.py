@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from dotenv import load_dotenv
@@ -24,15 +24,15 @@ else:
 
 @app.route('/')
 def hello():
-    return {"hello": "world"}
+    return jsonify({"hello": "world"})
 
 
 
 
 if __name__ == '__main__':
     if ENVIRONMENT == "development":
-        app.run(debug=True)
+        app.run(debug=True, port=os.getenv("PORT", default=5000))
     elif ENVIRONMENT == "production":
-        app.run()
+        app.run(port=os.getenv("PORT", default=5000))
     else: 
         print("error running app")
