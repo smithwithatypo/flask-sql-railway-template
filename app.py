@@ -46,16 +46,11 @@ def add_message():
     if ENVIRONMENT == "production":
         if request.method == "POST":
             data = request.get_json()
-            return jsonify({'response': data})
-
-
-
-            # new_message = Message(message=data['message'])
-            # db.session.add(new_message)
-            # db.session.commit()
-            # return jsonify({"id": new_message.id, "message": new_message.message}), 201
-        elif request.method == "GET":
-            return jsonify({"error": "please send a POST request"})
+            # return jsonify({'response': data})    # for debug
+            new_message = Message(message=data['message'])
+            db.session.add(new_message)
+            db.session.commit()
+            return jsonify({"id": new_message.id, "message": new_message.message}), 201
     elif ENVIRONMENT == "development":
         if request.method == "POST":
             data = request.get_json()
