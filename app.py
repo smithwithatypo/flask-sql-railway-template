@@ -56,6 +56,10 @@ def add_message():
             # return jsonify({"id": new_message.id, "message": new_message.message}), 201
         elif request.method == "GET":
             return jsonify({"error": "please send a POST request"})
+    elif ENVIRONMENT == "development":
+        if request.method == "POST":
+            data = request.get_json()
+            return jsonify({'response': data})
     else:
         return jsonify({"error": "Not in production environment, no db connected"})
 
