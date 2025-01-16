@@ -29,6 +29,21 @@ else:
 def hello():
     return jsonify({"hello": "world"})
 
+@app.route('/api/get_messages')
+def get_messages():
+    if ENVIRONMENT == "production":
+        db = SQLAlchemy(app)
+        class Message(db.Model):
+            __tablename__ = 'test-table'
+            id = db.Column(db.Integer, primary_key=True)
+            message = db.Column(db.String, nullable=False)
+
+        messages = Message.query.all()
+        return jsonify([{"id": message.id, "content": message.content} for message in messages])
+    else:
+        return jsonify({"error": "Not in production environment"})
+
+
 
 
 
