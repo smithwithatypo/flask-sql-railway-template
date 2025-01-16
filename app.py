@@ -36,6 +36,6 @@ if __name__ == '__main__':
     if ENVIRONMENT == "development":
         app.run(debug=True, port=os.getenv("PORT", default=5000))
     elif ENVIRONMENT == "production":
-        app.run(port=os.getenv("PORT", default=5000))
+        app.run(debug=False, host='0.0.0.0', port=os.getenv("PORT", default=5000))
     else: 
         print("error running app")
