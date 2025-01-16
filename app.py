@@ -31,7 +31,6 @@ def hello():
 @app.route('/api/get_messages')
 def get_messages():
     if ENVIRONMENT == "production":
-        db = SQLAlchemy(app)
         class Message(db.Model):
             __tablename__ = 'test-table'
             id = db.Column(db.Integer, primary_key=True)
