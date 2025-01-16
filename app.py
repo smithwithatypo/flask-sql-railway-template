@@ -11,11 +11,10 @@ ENVIRONMENT = os.getenv("ENVIRONMENT")
 app = Flask(__name__)
 
 if ENVIRONMENT == "production":
-    # app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-    # db = SQLAlchemy(app)
-    # migrate = Migrate(app, db)
-    print(os.getenv("PORT"))
-    print(os.getenv("DATABASE_URL"))
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+    db = SQLAlchemy(app)
+    migrate = Migrate(app, db)
+    print("database url:", os.getenv("DATABASE_URL"))
     pass
 elif ENVIRONMENT == "development":
     print("--dev mode found, no database connected--")
