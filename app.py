@@ -6,7 +6,7 @@ import os
 
 # Load environment variables from .env file
 load_dotenv()
-ENVIRONMENT = os.getenv("environment")
+ENVIRONMENT = os.getenv("ENVIRONMENT")
 
 app = Flask(__name__)
 
