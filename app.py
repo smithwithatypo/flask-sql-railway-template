@@ -37,7 +37,7 @@ def get_messages():
             message = db.Column(db.String, nullable=False)
 
         messages = Message.query.all()
-        return jsonify([{"id": message.id, "content": message.content} for message in messages])
+        return jsonify([{"id": message.id, "message": message.message} for message in messages])
     else:
         return jsonify({"error": "Not in production environment"})
 
