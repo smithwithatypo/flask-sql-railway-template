@@ -41,14 +41,17 @@ def get_messages():
         return jsonify({"error": "Not in production environment, no db connected"})
 
 
-@app.route('/api/add_message', methods=['POST'])
+@app.route('/api/add_message', methods=['GET', 'POST'])
 def add_message():
     if ENVIRONMENT == "production":
-        data = request.get_json()
-        new_message = Message(message=data['message'])
-        db.session.add(new_message)
-        db.session.commit()
-        return jsonify({"id": new_message.id, "message": new_message.message}), 201
+        if request.method == "POST":
+            data = request.get_json()
+            new_message = Message(message=data['message'])
+            db.session.add(new_message)
+            db.session.commit()
+            return jsonify({"id": new_message.id, "message": new_message.message}), 201
+        elif request.method == "GET":
+            return jsonify({"error": "please send a POST request"})
     else:
         return jsonify({"error": "Not in production environment, no db connected"})
 
