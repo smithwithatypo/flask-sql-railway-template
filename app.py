@@ -4,8 +4,6 @@ from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 
-from models import Message
-
 # Load environment variables from .env file
 load_dotenv()
 ENVIRONMENT = os.getenv("ENVIRONMENT")
