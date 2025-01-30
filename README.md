@@ -50,12 +50,12 @@ This is a basic template for a Flask application that connects to Supabase.
         - table == “test-table”
         - col1 == (name:“id”, type:”serial”, Default:”no default”, constraint:”Primary key”)
         - col2 == (name: “message”, type: “text”, Default: “no default”, Constraint: “no constraint”)
-    - ![db create table]()
-    - ![db table schema]()
+    - ![db create table](https://github.com/smithwithatypo/flask-sql-railway-template/blob/main/images/db_create_table.png)
+    - ![db table schema](https://github.com/smithwithatypo/flask-sql-railway-template/blob/main/images/db_table_schema.png)
 - set environment variable for flask service
     - follow popups.  “database_url”  (internal ip, not “public”)
 - set environment variables in railway (db_URL, and environment=production)
-    - ![flask env variables]()
+    - ![flask env variables](https://github.com/smithwithatypo/flask-sql-railway-template/blob/main/images/flask_env_variables.png)
 - navigate to railway > click on flask service > settings > copy “Public Networking” url > paste into Postman
 - in [app.py](http://app.py), make sure host is “0.0.0.0” in app.run()
 - in Postman, make sure you’re sending POST request over https (not http)
@@ -66,7 +66,7 @@ This is a basic template for a Flask application that connects to Supabase.
         - type your JSON  {message: "this is a message"}
             - every key must be a string or collection of strings
             - You can collect strings using curly brackets or square brackets
-    - ![postman POST]()
+    - ![postman POST](https://github.com/smithwithatypo/flask-sql-railway-template/blob/main/images/postman_POST.png)
 - Resources
     - Discord:   https://discord.gg/railway
     - Railway Docs:    https://docs.railway.com/
